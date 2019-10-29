@@ -43,5 +43,7 @@ def get_worldnews_hot_25():
     submissions = r.subreddit('worldnews').hot(limit=25)
     return [str(x.title) for x in submissions]
 
-d = Dataset()
-d.scrape()
+if __name__== "__main__":
+    # print(generate())
+    pass
+
