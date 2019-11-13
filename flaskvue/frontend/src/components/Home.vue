@@ -8,6 +8,7 @@
     <div>
       <button @click="getGooglePrediction">Predict GOOG (Google)</button>
     </div>
+    <h1> This really sucks </h1>
   </div>
 </template>
 
