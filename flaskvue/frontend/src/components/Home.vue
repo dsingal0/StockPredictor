@@ -4,11 +4,13 @@
     <p>Random number from backend: {{ randomNumber }}</p>
     <p>Google predicted value: {{ googleValue }}
     <button @click="getRandomFromBackend">New random number</button>
-
     <div>
       <button @click="getGooglePrediction">Predict GOOG (Google)</button>
     </div>
-    <h1> This really sucks </h1>
+
+    <select>
+      <option v-for="headers in stockHeaders" v-bind:key="headers.id">  {{ headers }} </option>
+    </select>
   </div>
 </template>
 
@@ -18,7 +20,8 @@ export default {
   data () {
     return {
       randomNumber: 0,
-      googleValue: null
+      googleValue: null,
+      stockHeaders: []
     }
   },
   methods: {
@@ -49,11 +52,25 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    getStockHeaders () {
+      const path = 'http://127.0.0.1:5000/api/headers'
+      axios.get(path)
+        .then(response => {
+          this.stockHeaders = response.data.stockHeaders
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
 
   },
   created () {
     this.getRandom()
+    this.getStockHeaders()
+  },
+  mounted () {
+    this.getStockHeaders()
   }
 }
 </script>
