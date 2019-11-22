@@ -1,16 +1,36 @@
 <template>
   <div>
-    <p>Home page</p>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Laughing Stonks
+          </h1>
+        </div>
+      </div>
+    </section>
+    <columns>
+      <column>
+        <div class="control">
+          <div class="select is-loading">
+            <select>
+              <option v-for="headers in stockHeaders" v-bind:key="headers.id">  {{ headers }} </option>
+            </select>
+          </div>
+        </div>
+      </column>
+    </columns>
     <p>Random number from backend: {{ randomNumber }}</p>
-    <p>Google predicted value: {{ googleValue }}
-    <button @click="getRandomFromBackend">New random number</button>
-    <div>
-      <button @click="getGooglePrediction">Predict GOOG (Google)</button>
-    </div>
+    <p>
+      Google predicted value: {{ googleValue }}
+      <button @click="getRandomFromBackend">New random number</button>
+      <div>
+        <button @click="getGooglePrediction">Predict GOOG (Google)</button>
+      </div>
 
-    <select>
-      <option v-for="headers in stockHeaders" v-bind:key="headers.id">  {{ headers }} </option>
-    </select>
+      <select>
+        <option v-for="headers in stockHeaders" v-bind:key="headers.id">  {{ headers }} </option>
+      </select>
   </div>
 </template>
 
@@ -63,7 +83,6 @@ export default {
           console.log(error)
         })
     }
-
   },
   created () {
     this.getRandom()
@@ -74,3 +93,7 @@ export default {
   }
 }
 </script>
+
+<style>
+  @import "bulma/css/bulma.css";
+</style>
