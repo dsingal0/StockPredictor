@@ -1,4 +1,5 @@
-LIST_OF_COMPANIES_WIKI = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
+SP100_WIKI = 'https://en.wikipedia.org/wiki/S%26P_100'
+SP500_WIKI = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
 
 class Dataset:
     def __init__(self):
@@ -9,7 +10,7 @@ class Dataset:
         Scrapes from wikipedia
         '''
         import requests
-        website_url = requests.get(LIST_OF_COMPANIES_WIKI).text
+        website_url = requests.get(SP500_WIKI).text
         
         from bs4 import BeautifulSoup
         soup = BeautifulSoup(website_url, "html.parser")
