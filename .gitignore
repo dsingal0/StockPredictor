@@ -140,3 +140,7 @@ src/_drafts
 
 # Notebook Checkpoints
 .ipynb_checkpoints/
+
+*.png
+*.pt
+*.pkt
