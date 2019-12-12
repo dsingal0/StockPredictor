@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend",
+    "\\frontend\\build",
+    "\\frontend\\src",
+    "\\frontend\\src\\assets",
+    "\\frontend\\src\\assets\\sass",
+    "\\frontend\\src\\components",
+    "\\frontend\\static"
+  ],
+  "SelectedNode": "\\frontend\\src\\components\\Home.vue",
+  "PreviewInSolutionExplorer": false
+}
