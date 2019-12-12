@@ -15,19 +15,20 @@
           <h3 class="title is-3">Pick a stock option to predict: </h3>
         </div>
         <div class="select is-vceneterd is-centered">
-          <select>
+          <select v-model="selected">
             <option v-for="headers in stockHeaders" v-bind:key="headers.id">  {{ headers }} </option>
           </select>
         </div>
         <button class="button is-primary is-success" v-on:click="submitHandler()"> Submit </button>
       </div>
       <div class="column is-half">
-        <h3 class="title is-3"> GRAPH GOES HERE </h3>
+        <img src="./assets/F.png" />
+        <!--<h3 class="title is-3"> GRAPH GOES HERE </h3>-->
       </div>
     </div>
     <div class="columns is-vceneterd is-centered has-text-centered is-8">
       <div class="column is-full">
-        <h3 class="title is-3"> {{ output }} </h3>
+        <h3 class="title is-3"> Predicted Value: {{ output }} </h3>
       </div>
     </div>
   </div>
@@ -40,7 +41,8 @@ export default {
   data () {
     return {
       stockHeaders: [],
-      output: 'OUTPUT GOES HERE'
+      output: 9.25,
+      selected: ''
     }
   },
   methods: {
@@ -77,21 +79,37 @@ export default {
       axios.get(path)
         .then(response => {
           this.stockHeaders = response.data.stockHeaders
+          this.stockHeaders.sort()
         })
         .catch(error => {
           console.log(error)
         })
+    },
+    getPrediction () {
+      const path = 'http://localhost:5000/api/predict'
+      axios.get(path, {
+        params: {
+          ticker: this.selected
+        }
+      })
+        .then(response => {
+          this.output = response.data.getPrediction
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    submitHandler () {
+      this.error = false
+      console.log(this.selected)
+      this.getPrediction()
     }
   },
   created () {
-    this.getRandom()
     this.getStockHeaders()
   },
   mounted () {
     this.getStockHeaders()
-  },
-  submitHandler () {
-    this.$emit('success')
   }
 }
 </script>
